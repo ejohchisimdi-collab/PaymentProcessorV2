@@ -1,0 +1,11 @@
+package com.chisimidi.ledger.service.models;
+
+public enum EntryType {
+    EXTERNAL_PSP_RECEIVABLE,
+    MERCHANT_PENDING_BALANCE,
+    PLATFORM_FEE_REVENUE,
+    TAX_LIABILITY,
+    MERCHANT_AVAILABLE_BALANCE,
+    MERCHANT_PAYOUT_IN_TRANSIT,
+    PLATFORM_CASH_ACCOUNT,
+}

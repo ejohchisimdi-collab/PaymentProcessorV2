@@ -129,7 +129,7 @@ A microservices-based payment processing system that handles end-to-end payment 
 
 ## 🔧 Services Overview
 
-### User Service (Port 8083)
+### User Service (Port 8080)
 **Responsibilities**: Authentication, user management, merchant settings
 
 **Key Endpoints**:

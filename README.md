@@ -36,7 +36,7 @@ A microservices-based payment processing system that handles end-to-end payment 
               │              │              │
     ┌─────────▼────────┐ ┌──▼──────────┐ ┌▼─────────────┐
     │   User Service   │ │   Account   │ │   Payment    │
-    │     (8083)       │ │   Service   │ │   Service    │
+    │     (8080)       │ │   Service   │ │   Service    │
     │                  │ │   (8081)    │ │   (8082)     │
     │ • Authentication │ │ • Vaults    │ │ • Processing │
     │ • User Mgmt      │ │ • Accounts  │ │ • Refunds    │
@@ -49,8 +49,8 @@ A microservices-based payment processing system that handles end-to-end payment 
               │              │              │
     ┌─────────▼────────┐ ┌──▼──────────┐ ┌▼─────────────┐
     │  Ledger Service  │ │  Webhook    │ │   Eureka     │
-    │     (8084)       │ │  Service    │ │   Server     │
-    │                  │ │  (8086)     │ │   (8761)     │
+    │     (8083)       │ │  Service    │ │   Server     │
+    │                  │ │  (8084)     │ │   (8761)     │
     │ • Double Entry   │ │ • Delivery  │ │ • Discovery  │
     │ • Settlements    │ │ • Retries   │ │ • Registry   │
     │ • Accounting     │ │ • HMAC      │ │              │
@@ -174,7 +174,7 @@ CREDIT_PENDING → VALIDATED → AUTHORISED → CAPTURED → SETTLED
 BANK_PENDING → VALIDATED → SETTLED
 ```
 
-### Ledger Service (Port 8084)
+### Ledger Service (Port 8083)
 **Responsibilities**: Double-entry accounting, settlement tracking
 
 **Key Endpoints**:
@@ -192,7 +192,7 @@ BANK_PENDING → VALIDATED → SETTLED
 - `MERCHANT_AVAILABLE_BALANCE` - Ready for payout
 - `MERCHANT_PAYOUT_IN_TRANSIT` - Settlement in progress
 
-### Webhook Service (Port 8086)
+### Webhook Service (Port 8084)
 **Responsibilities**: Event notification, webhook delivery, retry logic
 
 **Kafka Topics Consumed**:
@@ -271,10 +271,10 @@ docker-compose logs -f payment-service
 **Services will be available at**:
 - API Gateway: `http://localhost:8085`
 - Eureka Dashboard: `http://localhost:8761`
-- User Service: `http://localhost:8083`
+- User Service: `http://localhost:8080`
 - Account Service: `http://localhost:8081`
 - Payment Service: `http://localhost:8082`
-- Ledger Service: `http://localhost:8084`
+- Ledger Service: `http://localhost:8083`
 
 ### Local Development Setup
 
@@ -335,10 +335,10 @@ cd api-gateway && ./mvnw spring-boot:run &
 ### Swagger UI
 
 Access interactive API documentation:
-- User Service: `http://localhost:8083/swagger-ui.html`
+- User Service: `http://localhost:8080/swagger-ui.html`
 - Account Service: `http://localhost:8081/swagger-ui.html`
 - Payment Service: `http://localhost:8082/swagger-ui.html`
-- Ledger Service: `http://localhost:8084/swagger-ui.html`
+- Ledger Service: `http://localhost:8083/swagger-ui.html`
 
 ### Authentication
 
